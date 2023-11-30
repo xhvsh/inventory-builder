@@ -1,0 +1,523 @@
+:root {
+  --main: #c11919;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  outline: none;
+  user-select: none;
+}
+body {
+  background: #222;
+  height: 100vh;
+  overflow-y: hidden;
+}
+.inventory {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  position: absolute;
+}
+.weapons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.other {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+.col {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+p.category {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.weapon {
+  background: #333;
+  border: 2px solid #555;
+  width: 100%;
+  height: 100px;
+  position: relative;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.weapon::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 30px 30px;
+  border-color: transparent transparent transparent #555;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease;
+}
+.weapon:hover {
+  border: 2px solid var(--main);
+  box-shadow: inset 0 -30px 40px -20px var(--main);
+}
+.weapon:hover::after {
+  border-color: transparent transparent transparent var(--main);
+}
+.displayed-weapon {
+  transition: all 0.3s ease;
+}
+.weapon:hover .displayed-weapon {
+  filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 0.3));
+}
+.weapon-name,
+.skin-name {
+  color: #ddd;
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+.cards,
+.sprays {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.player-card {
+  width: 180px;
+  height: 360px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+}
+.card-gradient {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), #222);
+  pointer-events: none;
+}
+.name,
+.title {
+  position: absolute;
+  font-size: 0.75rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+}
+.name {
+  top: 270px;
+  background: #ffffbe;
+  color: #000;
+  width: 190px;
+  height: 20px;
+}
+.title {
+  top: 290px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #eee;
+  width: 187px;
+  height: 17px;
+}
+.spray-selector {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.spray {
+  position: absolute;
+  width: 141px;
+  height: 141px;
+  background: #333;
+  border: 1px solid #555;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  padding: 13px;
+  overflow: hidden;
+}
+#spray1 {
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
+}
+#spray1 img {
+  width: 60px;
+  transform: rotate(-45deg);
+}
+#spray2 {
+  top: 50%;
+  left: -70px;
+  transform: translateY(-50%) rotate(-45deg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
+}
+#spray2 img {
+  width: 60px;
+  transform: rotate(45deg);
+}
+#spray3 {
+  top: 50%;
+  right: -70px;
+  transform: translateY(-50%) rotate(45deg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: left;
+}
+#spray3 img {
+  width: 60px;
+  transform: rotate(-45deg);
+}
+#spray4 {
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: right;
+}
+#spray4 img {
+  width: 60px;
+  transform: rotate(45deg);
+}
+.spray:hover {
+  border: 3px solid var(--main);
+  box-shadow: inset 0 0 60px -10px var(--main);
+}
+
+.h100 img {
+  height: 100%;
+}
+.h90 img {
+  height: 90%;
+}
+.h80 img {
+  height: 80%;
+}
+.w100 img {
+  width: 100%;
+}
+#melee img {
+  max-height: 100%;
+  max-width: 90%;
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+.popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  width: 900px;
+  border-radius: 5px;
+  background: #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+.settings-popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  width: 900px;
+  border-radius: 5px;
+  background: #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+.popup.active,
+.settings-popup.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.setting-section {
+  width: 100%;
+  background: #222;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.setting-name {
+  color: #eee;
+  font-size: 1.2rem;
+}
+.colors {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.color {
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.color-red {
+  background: #c11919;
+}
+.color-green {
+  background: #19c11f;
+}
+.color-blue {
+  background: #19a2c1;
+}
+.color-yellow {
+  background: #c1bb19;
+}
+.color-purple {
+  background: #8319c1;
+}
+.display {
+  width: 100%;
+  height: 200px;
+  background: #222;
+  box-shadow: inset 0 0 20px var(--main);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.displayed {
+  height: 60%;
+}
+.variants {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.variant {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.variant img {
+  height: 100%;
+}
+.list {
+  width: 100%;
+  height: 232px;
+  background: #222;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  cursor: move;
+}
+.list::-webkit-scrollbar {
+  display: none;
+}
+.skin {
+  position: relative;
+  background: #333;
+  border-radius: 5px;
+  border: 2px solid #555;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.skin::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 30px 30px;
+  border-color: transparent transparent transparent #555;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease;
+}
+.skin:hover {
+  border: 2px solid var(--main);
+  box-shadow: inset 0 -30px 40px -20px var(--main);
+}
+.skin:hover::after {
+  border-color: transparent transparent transparent var(--main);
+}
+.skin img {
+  transition: filter 0.3s ease;
+}
+.skin:hover img {
+  filter: drop-shadow(0px 6px 1px rgba(0, 0, 0, 0.3));
+}
+.save {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #222;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.6rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+.save span {
+  z-index: 1;
+}
+.save::after {
+  content: "";
+  position: absolute;
+  left: -1100px;
+  top: -560px;
+  width: 900px;
+  height: 800px;
+  background: var(--main);
+  transition: all 0.5s ease;
+  transform: rotate(20deg);
+}
+.save:hover:after {
+  transform: translate(1170px) rotate(20deg);
+}
+
+.list-classic,
+.list-frenzy {
+  height: 100%;
+}
+.list-shorty,
+.list-ghost,
+.list-stinger,
+.list-spectre {
+  width: 95%;
+}
+.list-sheriff {
+  height: 90%;
+}
+.list-bucky,
+.list-judge,
+.list-bulldog,
+.list-guardian,
+.list-phantom,
+.list-vandal,
+.list-marshall,
+.list-operator {
+  width: 100%;
+}
+.list-ares,
+.list-odin {
+  width: 110%;
+}
+.list-melee {
+  max-height: 100%;
+  max-width: 90%;
+}
+
+.list-skin,
+.list-spray {
+  height: 100px;
+  width: 200px;
+}
+.list-card {
+  height: 200px;
+  width: 100px;
+}
+.list-playerCard {
+  height: 90%;
+  border-radius: 5px;
+}
+.list-sprays {
+  height: 90%;
+}
+.settings {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 0;
+  right: 0;
+  background: var(--main);
+  border-radius: 0 0 0 5px;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.author {
+  position: absolute;
+  color: #aaa;
+  bottom: 5px;
+  right: 5px;
+  font-size: 0.7rem;
+  text-align: right;
+}
+
+.active {
+  opacity: 1;
+  pointer-events: auto;
+}

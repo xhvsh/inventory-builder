@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Builder</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+    <script src="https://kit.fontawesome.com/384138011e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="settings">
+      <i class="fa fa-gear"></i>
+    </div>
+    <div class="settings-popup">
+      <p class="category">Settings</p>
+      <section class="setting-section">
+        <p class="setting-name">Change main color of the website:</p>
+        <div class="colors">
+          <div class="color color-red"></div>
+          <div class="color color-green"></div>
+          <div class="color color-blue"></div>
+          <div class="color color-yellow"></div>
+          <div class="color color-purple"></div>
+        </div>
+      </section>
+      <section>
+        <p style="color: #aaa">To exit, press anywhere on the background.</p>
+      </section>
+    </div>
+    <div class="inventory">
+      <div class="weapons">
+        <div class="col">
+          <p class="category">SIDEARMS</p>
+          <div class="weapon h100" id="classic">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">CLASSIC</p>
+          </div>
+          <div class="weapon h80" id="shorty">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">SHORTY</p>
+          </div>
+          <div class="weapon h100" id="frenzy">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">FRENZY</p>
+          </div>
+          <div class="weapon h80" id="ghost">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">GHOST</p>
+          </div>
+          <div class="weapon h100" id="sheriff">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">SHERIFF</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <p class="category">SMGS</p>
+          <div class="weapon h90" id="stinger">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">STINGER</p>
+          </div>
+          <div class="weapon h90" id="spectre">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">SPECTRE</p>
+          </div>
+          <p class="category">SHOTGUNS</p>
+          <div class="weapon w100" id="bucky">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">BUCKY</p>
+          </div>
+          <div class="weapon w100" id="judge">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">JUDGE</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <p class="category">RIFLES</p>
+          <div class="weapon w100" id="bulldog">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">BULLDOG</p>
+          </div>
+          <div class="weapon w100" id="guardian">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">GUARDIAN</p>
+          </div>
+          <div class="weapon w100" id="phantom">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">PHANTOM</p>
+          </div>
+          <div class="weapon w100" id="vandal">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">VANDAL</p>
+          </div>
+          <p class="category">MELEE</p>
+          <div class="weapon" id="melee">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">MELEE</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <p class="category">SNIPER RIFLES</p>
+          <div class="weapon w100" id="marshall">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">MARSHALL</p>
+          </div>
+          <div class="weapon w100" id="operator">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">OPERATOR</p>
+          </div>
+          <p class="category">MACHINE GUNS</p>
+          <div class="weapon w100" id="ares">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">ARES</p>
+          </div>
+          <div class="weapon w100" id="odin">
+            <img src="" class="displayed-weapon" loading="lazy" />
+            <p class="weapon-name">ODIN</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="other">
+        <div class="cards" id="card">
+          <p class="category">PLAYER CARDS</p>
+          <img src="" class="player-card" />
+          <div class="card-gradient"></div>
+          <input type="text" class="name" placeholder="Your nickname" spellcheck="false" onclick="event.stopPropagation();" />
+          <input type="text" class="title" placeholder="Your title" spellcheck="false" onclick="event.stopPropagation();" />
+        </div>
+        <div class="sprays">
+          <p class="category">SPRAYS</p>
+          <div class="spray-selector">
+            <div class="spray" id="spray1">
+              <img src="" class="spray-img" />
+            </div>
+            <div class="spray" id="spray2">
+              <img src="" class="spray-img" />
+            </div>
+            <div class="spray" id="spray3">
+              <img src="" class="spray-img" />
+            </div>
+            <div class="spray" id="spray4">
+              <img src="" class="spray-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="popup">
+      <div class="display">
+        <img class="displayed" />
+        <div class="variants"></div>
+      </div>
+      <div class="list"></div>
+      <button type="button" class="save"><span>SAVE</span></button>
+    </div>
+    <div class="author">Webiste made by xhvsh 2023&copy;<br />Full repository avaiable on github</div>
+  </body>
+</html>
